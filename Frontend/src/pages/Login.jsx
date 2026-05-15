@@ -14,7 +14,7 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const res = await axios.post("http://localhost:4000/api/users/login", {
+      const res = await axios.post("https://mern-blog-app-jg3k.onrender.com/api/users/login", {
         email,
         password,
       });
