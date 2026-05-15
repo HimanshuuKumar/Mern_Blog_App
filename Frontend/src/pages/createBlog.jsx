@@ -22,7 +22,7 @@ const CreateBlogs = () => {
       const token = localStorage.getItem("token");
 
       const res = await axios.post(
-        "http://localhost:4000/api/blogs/create",
+        "https://mern-blog-app-jg3k.onrender.com/api/blogs/create",
         formData,
         {
           headers: {
