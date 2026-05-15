@@ -23,7 +23,7 @@ const MyBlogs = () => {
 
       const token = localStorage.getItem("token");
 
-      const res = await axios.get("http://localhost:4000/api/blogs/me", {
+      const res = await axios.get("https://mern-blog-app-jg3k.onrender.com/api/blogs/me", {
         headers: {
           Authorization: token,
         },
