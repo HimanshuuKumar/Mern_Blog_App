@@ -23,7 +23,7 @@ const Signup = () => {
       formData.append("profilePic", profilePic);
 
       const res = await axios.post(
-        "http://localhost:4000/api/users/signup",
+        "https://mern-blog-app-jg3k.onrender.com/api/users/signup",
         formData,
       );
       alert(res.data.message);
