@@ -29,7 +29,7 @@ const MyBlogs = () => {
         },
       });
 
-      setBlogs(res.data.blogs);
+      setBlogs(res.data.blogs || []);
     } catch (err) {
       console.log(err);
       setError("Failed to fetch blogs");
@@ -52,7 +52,7 @@ const MyBlogs = () => {
       const token = localStorage.getItem("token");
 
       await axios.delete(
-        `http://localhost:4000/api/blogs/deleteblogs/${blogId}`,
+        `https://mern-blog-app-jg3k.onrender.com/api/blogs/deleteblogs/${blogId}`,
         {
           headers: {
             Authorization: token,
