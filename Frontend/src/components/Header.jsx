@@ -5,6 +5,7 @@ const Header = () => {
   const location = useLocation();
 
   const isActive = (path) => location.pathname === path;
+  const user = JSON.parse(localStorage.getItem("user"));
 
   return (
     <div className="flex justify-between items-center px-6 py-3 shadow-md bg-white sticky top-0 z-50">
@@ -61,9 +62,12 @@ const Header = () => {
       {/* Profile Avatar */}
       <Link to="/profile">
         <img
-          src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
+          src={
+            user?.profilepic ||
+            "https://cdn-icons-png.flaticon.com/512/149/149071.png"
+          }
           alt="profile"
-          className="w-10 h-10 rounded-full cursor-pointer border hover:scale-105 transition"
+          className="w-10 h-10 rounded-full cursor-pointer border object-cover hover:scale-105 transition"
         />
       </Link>
     </div>

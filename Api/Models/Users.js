@@ -6,7 +6,7 @@ const userSchema = new mongoose.Schema({
   password: { type: String, required: true },
   profilePic: {
     type: String,
-    default: "",
+    default: "https://cdn-icons-png.flaticon.com/512/149/149071.png",
   },
 
   createdAt: { type: Date, default: Date.now },

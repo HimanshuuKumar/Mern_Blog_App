@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Header from "../components/Header";
 import BlogDescription from "../components/BlogDescription";
+import { useNavigate } from "react-router-dom";
 const Home = () => {
   const [blogs, setBlogs] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchBlogs();
@@ -38,24 +40,54 @@ const Home = () => {
               className="bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition"
             >
               {/* Post Header */}
-              <div className="flex items-center justify-between px-4 py-3">
-                <div className="flex items-center gap-3">
-                  <img
-                    src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
-                    className="w-11 h-11 rounded-full object-cover"
-                    alt="user"
-                  />
+              <div
+                className="flex items-center justify-between px-4 py-3 cursor-pointer"
+                onClick={() => navigate(`/blog/${blog._id}`)}
+              >
+                <div className="flex items-center gap-4">
+                  <div className="relative">
+                    <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-red-500 via-pink-500 to-orange-400 blur-[2px] opacity-80"></div>
+
+                    <img
+                      loading="lazy"
+                      src={blog.user?.profilePic?.replace(
+                        "/upload/",
+                        "/upload/w_100,h_100,c_fill,q_auto,f_auto/",
+                      )}
+                      alt=""
+                      className="relative w-12 h-12 rounded-full object-cover border-2 border-white shadow-lg bg-gray-200"
+                    />
+                  </div>
 
                   <div>
-                    <p className="font-semibold text-sm text-gray-900">
-                      {blog.user?.name || "User"}
-                    </p>
-                    <p className="text-xs text-gray-500">
-                      Software Developer • Just now
+                    <h3 className="font-semibold text-gray-800 text-[15px] tracking-wide">
+                      {blog.user?.name}
+                    </h3>
+
+                    <p className="text-gray-500 text-sm">
+                      {(() => {
+                        const now = new Date();
+                        const created = new Date(blog.createdAt);
+
+                        const diffMs = now - created;
+
+                        const diffMinutes = Math.floor(diffMs / (1000 * 60));
+                        const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
+                        const diffDays = Math.floor(
+                          diffMs / (1000 * 60 * 60 * 24),
+                        );
+
+                        if (diffMinutes < 1) return "Just now";
+                        if (diffMinutes < 60) return `${diffMinutes} min ago`;
+                        if (diffHours < 24) return `${diffHours} hr ago`;
+                        if (diffDays === 1) return "1 day ago";
+                        if (diffDays < 7) return `${diffDays} days ago`;
+
+                        return created.toLocaleDateString();
+                      })()}
                     </p>
                   </div>
                 </div>
-
                 <button className="text-gray-400 hover:text-gray-600">⋯</button>
               </div>
 
