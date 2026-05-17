@@ -7,6 +7,7 @@ import Login from "./pages/Login";
 import Profile from "./pages/Profile";
 import Home from "./pages/Home";
 import MyBlogs from "./pages/MyBlogs";
+import BlogDetails from "./pages/BlogDetails";
 
 const App = () => {
   const token = localStorage.getItem("token");
@@ -27,6 +28,7 @@ const App = () => {
         />
         <Route path="/create" element={<CreateBlogs />} />
         <Route path="/myposts" element={<MyBlogs />} />
+        <Route path="/blog/:id" element={<BlogDetails />} />
       </Routes>
     </BrowserRouter>
   );

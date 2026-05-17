@@ -7,6 +7,10 @@ import {
   getMyBlogs,
   getAllBlogs,
   DeleteBlogs,
+  getSingleBlog,
+  likeBlog,
+  addComment,
+  deleteComment,
 } from "../controllers/Blog.js";
 
 const router = express.Router();
@@ -18,5 +22,13 @@ router.get("/me", auth, getMyBlogs);
 router.get("/getblogs", auth, getAllBlogs);
 
 router.delete("/deleteblogs/:id", auth, DeleteBlogs);
+
+router.get("/:id", getSingleBlog);
+
+router.put("/like/:id", auth, likeBlog);
+
+router.post("/comment/:id", auth, addComment);
+
+router.delete("/comment/:blogId/:commentId", auth, deleteComment);
 
 export default router;

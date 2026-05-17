@@ -29,7 +29,7 @@ const MyBlogs = () => {
         },
       });
 
-      setBlogs(res.data.blogs);
+      setBlogs(res.data.blogs || []);
     } catch (err) {
       console.log(err);
       setError("Failed to fetch blogs");
